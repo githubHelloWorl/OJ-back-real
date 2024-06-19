@@ -31,9 +31,7 @@ import java.util.List;
 
 /**
  * 题目接口
- *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://yupi.icu">编程导航知识星球</a>
+
  */
 @RestController
 @RequestMapping("/question")
@@ -55,8 +53,7 @@ public class QuestionController {
 
     /**
      * 创建
-     *
-     * @param questionAddRequest
+         * @param questionAddRequest
      * @param request
      * @return
      */
@@ -92,8 +89,7 @@ public class QuestionController {
 
     /**
      * 删除
-     *
-     * @param deleteRequest
+         * @param deleteRequest
      * @param request
      * @return
      */
@@ -117,8 +113,7 @@ public class QuestionController {
 
     /**
      * 更新（仅管理员）
-     *
-     * @param questionUpdateRequest
+         * @param questionUpdateRequest
      * @return
      */
     @PostMapping("/update")
@@ -153,8 +148,7 @@ public class QuestionController {
 
     /**
      * 根据 id 获取
-     *
-     * @param id
+         * @param id
      * @return
      */
     @GetMapping("/get")
@@ -176,8 +170,7 @@ public class QuestionController {
 
     /**
      * 根据 id 获取（脱敏）
-     *
-     * @param id
+         * @param id
      * @return
      */
     @GetMapping("/get/vo")
@@ -194,8 +187,7 @@ public class QuestionController {
 
     /**
      * 分页获取列表（封装类）
-     *
-     * @param questionQueryRequest
+         * @param questionQueryRequest
      * @param request
      * @return
      */
@@ -213,8 +205,7 @@ public class QuestionController {
 
     /**
      * 分页获取当前用户创建的资源列表
-     *
-     * @param questionQueryRequest
+         * @param questionQueryRequest
      * @param request
      * @return
      */
@@ -237,8 +228,7 @@ public class QuestionController {
 
     /**
      * 分页获取题目列表（仅管理员）
-     *
-     * @param questionQueryRequest
+         * @param questionQueryRequest
      * @param request
      * @return
      */
@@ -257,8 +247,7 @@ public class QuestionController {
 
     /**
      * 编辑（用户）
-     *
-     * @param questionEditRequest
+         * @param questionEditRequest
      * @param request
      * @return
      */
@@ -298,8 +287,7 @@ public class QuestionController {
 
     /**
      * 提交题目
-     *
-     * @param questionSubmitAddRequest
+         * @param questionSubmitAddRequest
      * @param request
      * @return 提交记录的 id
      */
@@ -317,8 +305,7 @@ public class QuestionController {
 
     /**
      * 分页获取题目提交列表（除了管理员外，普通用户只能看到非答案、提交代码等公开信息）
-     *
-     * @param questionSubmitQueryRequest
+         * @param questionSubmitQueryRequest
      * @param request
      * @return
      */

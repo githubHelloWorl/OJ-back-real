@@ -52,8 +52,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
 
     /**
      * 提交题目
-     *
-     * @param questionSubmitAddRequest
+         * @param questionSubmitAddRequest
      * @param loginUser
      * @return
      */
@@ -105,8 +104,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
 
     /**
      * 获取查询包装类（用户根据哪些字段查询，根据前端传来的请求对象，得到 mybatis 框架支持的查询 QueryWrapper 类）
-     *
-     * @param questionSubmitQueryRequest
+         * @param questionSubmitQueryRequest
      * @return
      */
     @Override

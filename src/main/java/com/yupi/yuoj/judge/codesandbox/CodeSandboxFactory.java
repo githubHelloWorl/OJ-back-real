@@ -12,8 +12,7 @@ public class CodeSandboxFactory {
 
     /**
      * 创建代码沙箱示例
-     *
-     * @param type 沙箱类型
+         * @param type 沙箱类型
      * @return
      */
     public static CodeSandbox newInstance(String type) {

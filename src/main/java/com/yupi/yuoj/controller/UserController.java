@@ -39,9 +39,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 用户接口
- *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://yupi.icu">编程导航知识星球</a>
+
  */
 @RestController
 @RequestMapping("/user")
@@ -58,8 +56,7 @@ public class UserController {
 
     /**
      * 用户注册
-     *
-     * @param userRegisterRequest
+         * @param userRegisterRequest
      * @return
      */
     @PostMapping("/register")
@@ -79,8 +76,7 @@ public class UserController {
 
     /**
      * 用户登录
-     *
-     * @param userLoginRequest
+         * @param userLoginRequest
      * @param request
      * @return
      */
@@ -123,8 +119,7 @@ public class UserController {
 
     /**
      * 用户注销
-     *
-     * @param request
+         * @param request
      * @return
      */
     @PostMapping("/logout")
@@ -138,10 +133,8 @@ public class UserController {
 
     /**
      * 获取当前登录用户
-     *
-     * @param request
-     *
-     * @return
+         * @param request
+         * @return
      */
     @GetMapping("/get/login")
     public BaseResponse<LoginUserVO> getLoginUser(HttpServletRequest request) {
@@ -155,8 +148,7 @@ public class UserController {
 
     /**
      * 创建用户
-     *
-     * @param userAddRequest
+         * @param userAddRequest
      * @param request
      * @return
      */
@@ -175,8 +167,7 @@ public class UserController {
 
     /**
      * 删除用户
-     *
-     * @param deleteRequest
+         * @param deleteRequest
      * @param request
      * @return
      */
@@ -192,8 +183,7 @@ public class UserController {
 
     /**
      * 更新用户
-     *
-     * @param userUpdateRequest
+         * @param userUpdateRequest
      * @param request
      * @return
      */
@@ -213,8 +203,7 @@ public class UserController {
 
     /**
      * 根据 id 获取用户（仅管理员）
-     *
-     * @param id
+         * @param id
      * @param request
      * @return
      */
@@ -231,8 +220,7 @@ public class UserController {
 
     /**
      * 根据 id 获取包装类
-     *
-     * @param id
+         * @param id
      * @param request
      * @return
      */
@@ -245,8 +233,7 @@ public class UserController {
 
     /**
      * 分页获取用户列表（仅管理员）
-     *
-     * @param userQueryRequest
+         * @param userQueryRequest
      * @param request
      * @return
      */
@@ -263,8 +250,7 @@ public class UserController {
 
     /**
      * 分页获取用户封装列表
-     *
-     * @param userQueryRequest
+         * @param userQueryRequest
      * @param request
      * @return
      */
@@ -290,8 +276,7 @@ public class UserController {
 
     /**
      * 更新个人信息
-     *
-     * @param userUpdateMyRequest
+         * @param userUpdateMyRequest
      * @param request
      * @return
      */

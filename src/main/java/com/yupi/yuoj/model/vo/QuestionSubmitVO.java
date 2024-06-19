@@ -72,8 +72,7 @@ public class QuestionSubmitVO implements Serializable {
 
     /**
      * 包装类转对象
-     *
-     * @param questionSubmitVO
+         * @param questionSubmitVO
      * @return
      */
     public static QuestionSubmit voToObj(QuestionSubmitVO questionSubmitVO) {
@@ -91,8 +90,7 @@ public class QuestionSubmitVO implements Serializable {
 
     /**
      * 对象转包装类
-     *
-     * @param questionSubmit
+         * @param questionSubmit
      * @return
      */
     public static QuestionSubmitVO objToVo(QuestionSubmit questionSubmit) {

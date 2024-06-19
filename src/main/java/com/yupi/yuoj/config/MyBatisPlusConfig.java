@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * MyBatis Plus 配置
- *
  * @author https://github.com/liyupi
  */
 @Configuration
@@ -18,8 +17,7 @@ public class MyBatisPlusConfig {
 
     /**
      * 拦截器配置
-     *
-     * @return
+         * @return
      */
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {

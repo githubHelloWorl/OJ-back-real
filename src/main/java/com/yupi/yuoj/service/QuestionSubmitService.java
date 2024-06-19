@@ -23,8 +23,7 @@ public interface QuestionSubmitService extends IService<QuestionSubmit> {
     
     /**
      * 题目提交
-     *
-     * @param questionSubmitAddRequest 题目提交信息
+         * @param questionSubmitAddRequest 题目提交信息
      * @param loginUser
      * @return
      */
@@ -32,16 +31,14 @@ public interface QuestionSubmitService extends IService<QuestionSubmit> {
 
     /**
      * 获取查询条件
-     *
-     * @param questionSubmitQueryRequest
+         * @param questionSubmitQueryRequest
      * @return
      */
     QueryWrapper<QuestionSubmit> getQueryWrapper(QuestionSubmitQueryRequest questionSubmitQueryRequest);
 
     /**
      * 获取题目封装
-     *
-     * @param questionSubmit
+         * @param questionSubmit
      * @param loginUser
      * @return
      */
@@ -49,8 +46,7 @@ public interface QuestionSubmitService extends IService<QuestionSubmit> {
 
     /**
      * 分页获取题目封装
-     *
-     * @param questionSubmitPage
+         * @param questionSubmitPage
      * @param loginUser
      * @return
      */
