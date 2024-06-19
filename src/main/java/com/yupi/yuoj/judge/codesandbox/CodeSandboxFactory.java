@@ -2,6 +2,7 @@ package com.yupi.yuoj.judge.codesandbox;
 
 import com.yupi.yuoj.judge.codesandbox.impl.ExampleCodeSandbox;
 import com.yupi.yuoj.judge.codesandbox.impl.RemoteCodeSandbox;
+import com.yupi.yuoj.judge.codesandbox.impl.RemoteDockerCodeSandbox;
 import com.yupi.yuoj.judge.codesandbox.impl.ThirdPartyCodeSandbox;
 
 /**
@@ -23,6 +24,8 @@ public class CodeSandboxFactory {
                 return new RemoteCodeSandbox();
             case "thirdParty":
                 return new ThirdPartyCodeSandbox();
+            case "remoteDocker":
+                return new RemoteDockerCodeSandbox();
             default:
                 return new ExampleCodeSandbox();
         }
