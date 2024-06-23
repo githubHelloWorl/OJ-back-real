@@ -42,8 +42,8 @@ public class test {
 //        System.out.println(responseStr);
 
 
-        test1();
-
+//        test1();
+        test2();
             return;
     }
 
@@ -71,7 +71,7 @@ public class test {
                 "}";
 
         ExecuteCodeRequest request = new ExecuteCodeRequest();
-        request.setInputList(List.of(new String[]{"1 2","3 4","5 6"}));
+        request.setInputList(List.of(new String[]{"1 2"}));
         request.setCode(code);
         request.setLanguage("java");
 
@@ -101,6 +101,30 @@ public class test {
         private String userAccount;
 
         private String userPassword;
+    }
+
+    private static boolean test2(){
+        String a = "0";
+
+        int y = Integer.parseInt(a);
+
+        int x = 1;
+
+        // 负数和以0结尾的正数不是回文数（除了0本身）
+        if (x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
+        }
+
+        int reversedHalf = 0;
+        // 反转整数的一半
+        while (x > reversedHalf) {
+            reversedHalf = reversedHalf * 10 + x % 10;
+            x /= 10;
+        }
+
+        // 对于奇数长度的整数，去掉中间的数字后再比较
+        // 例如，对于12321，我们反转成123，然后与12321的前半部分123比较
+        return x == reversedHalf || x == reversedHalf / 10;
     }
 
 }

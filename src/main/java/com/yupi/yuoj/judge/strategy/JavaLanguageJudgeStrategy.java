@@ -44,7 +44,7 @@ public class JavaLanguageJudgeStrategy implements JudgeStrategy {
         // 依次判断每一项输出和预期输出是否相等
         for (int i = 0; i < judgeCaseList.size(); i++) {
             JudgeCase judgeCase = judgeCaseList.get(i);
-            if (!judgeCase.getOutput().equals(outputList.get(i))) {
+            if (!judgeCase.getOutput().equals(outputList.get(i).trim())) {
                 judgeInfoMessageEnum = JudgeInfoMessageEnum.WRONG_ANSWER;
                 judgeInfoResponse.setMessage(judgeInfoMessageEnum.getValue());
                 return judgeInfoResponse;
@@ -56,7 +56,7 @@ public class JavaLanguageJudgeStrategy implements JudgeStrategy {
         JudgeConfig judgeConfig = JSONUtil.toBean(judgeConfigStr, JudgeConfig.class);
         Long needMemoryLimit = judgeConfig.getMemoryLimit();
         Long needTimeLimit = judgeConfig.getTimeLimit();
-        if (memory > needMemoryLimit) {
+        if (memory > (needMemoryLimit / 1000000)) {
             judgeInfoMessageEnum = JudgeInfoMessageEnum.MEMORY_LIMIT_EXCEEDED;
             judgeInfoResponse.setMessage(judgeInfoMessageEnum.getValue());
             return judgeInfoResponse;
