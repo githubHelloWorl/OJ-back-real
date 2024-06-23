@@ -14,8 +14,8 @@ import org.springframework.beans.factory.annotation.Value;
  * 远程代码沙箱（实际调用接口的沙箱）
  */
 public class RemoteCodeSandbox implements CodeSandbox {
-    @Value("${hostname.remote}")
-    private static String host;
+
+    private static final String host = "121.41.56.218";
 
     // 定义鉴权请求头和密钥
     private static final String AUTH_REQUEST_HEADER = "auth";
