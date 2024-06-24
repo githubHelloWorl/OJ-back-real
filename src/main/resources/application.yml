@@ -91,9 +91,3 @@ cos:
 # 代码沙箱配置
 codesandbox:
   type: remoteDocker
-
-hostname:
-  docker:
-    121.41.56.218
-  remote:
-    121.41.56.218
