@@ -66,7 +66,6 @@ public class JudgeServiceImpl implements JudgeService {
         if (!update) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "题目状态更新错误");
         }
-        System.out.println("3)-----------");
 
         // 4）调用沙箱，获取到执行结果
         CodeSandbox codeSandbox = CodeSandboxFactory.newInstance(type);
@@ -94,6 +93,7 @@ public class JudgeServiceImpl implements JudgeService {
         judgeContext.setJudgeCaseList(judgeCaseList);
         judgeContext.setQuestion(question);
         judgeContext.setQuestionSubmit(questionSubmit);
+        // TODO 对结果进行分析
         JudgeInfo judgeInfo = judgeManager.doJudge(judgeContext);
 
         // 6）修改数据库中的判题结果
