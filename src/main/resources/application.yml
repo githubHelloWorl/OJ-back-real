@@ -88,6 +88,22 @@ cos:
     secretKey: xxx
     region: xxx
     bucket: xxx
-# 代码沙箱配置
-codesandbox:
-  type: remoteDocker
+
+# 接口文档配置
+knife4j:
+  enable: true
+  openapi:
+    title: "接口文档"
+    version: 1.0
+    group:
+      default:
+        api-rule: package
+        api-rule-resources:
+          - com.yupi.yuoj.controller
+
+yuapi:
+  client:
+    access-key: isg78n484r2hf2mo43ofwmqu6p2n6kdz
+    secret-key: mqw1tc1xgn7d09we9u8hmzucbmy43on3
+myAI:
+  id: 1L

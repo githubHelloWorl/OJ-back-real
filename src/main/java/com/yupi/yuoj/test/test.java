@@ -22,28 +22,8 @@ public class test {
     private static final String AUTH_REQUEST_SECRET = "secretKey";
 
     public static void main(String[] args) {
-//
-//            UserLoginRequest userLoginRequest = new UserLoginRequest();
-//            userLoginRequest.setUserAccount("admin");
-//            userLoginRequest.setUserPassword("12345678");
-//
-//            System.out.println("远程代码沙箱");
-//            String url = "http://localhost:8102/api/user/login";
-//            String json = JSONUtil.toJsonStr(userLoginRequest);
-//            String responseStr = HttpUtil.createPost(url)
-//                    .body(json)
-//                    .execute()
-//                    .body();
-//            if(StringUtils.isBlank(responseStr)){
-//                System.out.println("请求失败");
-//                throw new BusinessException(ErrorCode.API_REQUEST_ERROR, "executeCode remoteSandbox error, message = " + responseStr);
-//            }
-//
-//        System.out.println(responseStr);
-
-
-//        test1();
-        test2();
+        test1();
+//        test2();
             return;
     }
 
@@ -70,14 +50,88 @@ public class test {
                 "    }\n" +
                 "}";
 
+        String codeC = "#include <stdio.h>\n" +
+                "\n" +
+                "int main(int argc, char *argv[]) {\n" +
+                "    // 检查是否提供了两个参数\n" +
+                "    if (argc != 3) {\n" +
+                "        printf(\"Usage: %s <number1> <number2>\\n\", argv[0]);\n" +
+                "        return 1;\n" +
+                "    }\n" +
+                "\n" +
+                "    // 将参数转换为整数\n" +
+                "    int num1 = atoi(argv[1]);\n" +
+                "    int num2 = atoi(argv[2]);\n" +
+                "\n" +
+                "    // 相加\n" +
+                "    int sum = num1 + num2;\n" +
+                "\n" +
+                "    // 输出结果\n" +
+                "    printf(\"%d\",sum);\n" +
+                "\n" +
+                "    return 0;\n" +
+                "}";
+
+        String codeCpp = "#include <iostream>\n" +
+                "#include <cstdlib> // 包含 std::stoi 函数\n" +
+                "\n" +
+                "using namespace std;\n" +
+                "\n" +
+                "int main(int argc, char *argv[]) {\n" +
+                "    // 检查是否提供了两个参数\n" +
+                "    if (argc != 3) {\n" +
+                "        cout << \"Usage: \" << argv[0] << \" <number1> <number2>\" << endl;\n" +
+                "        return 1;\n" +
+                "    }\n" +
+                "\n" +
+                "    try {\n" +
+                "        // 将参数转换为整数\n" +
+                "        int num1 = stoi(argv[1]);\n" +
+                "        int num2 = stoi(argv[2]);\n" +
+                "\n" +
+                "        // 相加\n" +
+                "        int sum = num1 + num2;\n" +
+                "\n" +
+                "        // 输出结果\n" +
+                "        cout << sum << endl;\n" +
+                "    } catch (const invalid_argument& ia) {\n" +
+                "        cerr << \"Invalid argument: \" << ia.what() << endl;\n" +
+                "        return 1;\n" +
+                "    } catch (const out_of_range& oor) {\n" +
+                "        cerr << \"Out of range error: \" << oor.what() << endl;\n" +
+                "        return 1;\n" +
+                "    }\n" +
+                "\n" +
+                "    return 0;\n" +
+                "}";
+
+        String codePy = "import sys\n" +
+                "\n" +
+                "# 定义一个函数来执行两数相加\n" +
+                "def add_two_numbers(num1, num2):\n" +
+                "    return num1 + num2\n" +
+                "\n" +
+                "if len(sys.argv) != 3:\n" +
+                "    print(\"使用方法: python3 test.py <number1> <number2>\")\n" +
+                "    sys.exit(1)\n" +
+                "\n" +
+                "                # 从命令行参数获取两个数字\n" +
+                "                # sys.argv[0] 是脚本名称，sys.argv[1] 和 sys.argv[2] 是数字\n" +
+                "first_number = int(sys.argv[1])\n" +
+                "second_number = int(sys.argv[2])\n" +
+                "\n" +
+                "                # 调用函数并打印结果\n" +
+                "result = add_two_numbers(first_number, second_number)\n" +
+                "print(f\"{result}\")\n";
+
         ExecuteCodeRequest request = new ExecuteCodeRequest();
         request.setInputList(List.of(new String[]{"1 2"}));
-        request.setCode(code);
-        request.setLanguage("java");
+        request.setCode(codePy);
+        request.setLanguage("python");
 
         System.out.println("远程代码沙箱");
-//        String url = "http://" + host + ":8090/executeCode";
-        String url = "http://" + host + ":8090/executeCodeDocker";
+        String url = "http://" + host + ":8090/executeCode";
+//        String url = "http://" + host + ":8090/executeCodeDocker";
         String json = JSONUtil.toJsonStr(request);
         String responseStr = HttpUtil.createPost(url)
                 .header(AUTH_REQUEST_HEADER, AUTH_REQUEST_SECRET)

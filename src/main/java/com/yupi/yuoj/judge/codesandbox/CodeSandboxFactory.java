@@ -1,9 +1,6 @@
 package com.yupi.yuoj.judge.codesandbox;
 
-import com.yupi.yuoj.judge.codesandbox.impl.ExampleCodeSandbox;
-import com.yupi.yuoj.judge.codesandbox.impl.RemoteCodeSandbox;
-import com.yupi.yuoj.judge.codesandbox.impl.RemoteDockerCodeSandbox;
-import com.yupi.yuoj.judge.codesandbox.impl.ThirdPartyCodeSandbox;
+import com.yupi.yuoj.judge.codesandbox.impl.*;
 
 /**
  * 代码沙箱工厂（根据字符串参数创建指定的代码沙箱实例）
@@ -25,6 +22,8 @@ public class CodeSandboxFactory {
                 return new ThirdPartyCodeSandbox();
             case "remoteDocker":
                 return new RemoteDockerCodeSandbox();
+            case "AI":
+                return new AICodeSandbox();
             default:
                 return new ExampleCodeSandbox();
         }

@@ -36,8 +36,8 @@ public class JudgeServiceImpl implements JudgeService {
     @Resource
     private JudgeManager judgeManager;
 
-    @Value("${codesandbox.type:example}")
-    private String type;
+//    @Value("${codesandbox.type:example}")
+//    private String type;
 
 
     @Override
@@ -68,6 +68,7 @@ public class JudgeServiceImpl implements JudgeService {
         }
 
         // 4）调用沙箱，获取到执行结果
+        String type = questionSubmit.getSubmitType();
         CodeSandbox codeSandbox = CodeSandboxFactory.newInstance(type);
         codeSandbox = new CodeSandboxProxy(codeSandbox);
         String language = questionSubmit.getLanguage();

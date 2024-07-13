@@ -50,6 +50,11 @@ public class QuestionSubmit implements Serializable {
     private Long userId;
 
     /**
+     * 提交方式 (remote/remoteDocker/AI)
+     */
+    private String submitType;
+
+    /**
      * 创建时间
      */
     private Date createTime;
