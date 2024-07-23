@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * 第三方代码沙箱（调用网上现成的代码沙箱）
+ * 调用大模型接口
  */
 public class AICodeSandbox implements CodeSandbox {
 
@@ -29,9 +29,13 @@ public class AICodeSandbox implements CodeSandbox {
         String code = executeCodeRequest.getCode();
         String language = executeCodeRequest.getLanguage();
 
-        String requestMessage = code + "," + language;
-        for(String input: inputList){
-            requestMessage += ("," + input);
+        String requestMessage = code + "【" + language;
+        for(int i = 0; i < inputList.size(); ++i){
+            if(i == 0){
+                requestMessage += ("【" + inputList.get(i));
+            } else {
+                requestMessage += ("," + inputList.get(i));
+            }
         }
 
         // 调用AI
@@ -39,15 +43,15 @@ public class AICodeSandbox implements CodeSandbox {
 
         // 处理返回结果
         ExecuteCodeResponse response = new ExecuteCodeResponse();
-        String[] splits = ansResponse.split("【【【\n");
-        if(splits.length < 3){
+        String[] splits = ansResponse.split("【【【");
+        if(splits.length < 2){
 //            throw new BusinessException(ErrorCode.SYSTEM_ERROR,"AI 生成错误");
             response.setStatus(0);
             response.setMessage("AI 生成错误");
             return response;
         }
 
-        String ans = splits[1]; // 1
+        String ans = splits[1].trim(); // 1
         String[] temp = ans.split("\n");
         String[] ansList = Arrays.copyOf(temp, temp.length - 1);
 
@@ -59,6 +63,20 @@ public class AICodeSandbox implements CodeSandbox {
         judgeInfo.setMemory(0L);
         response.setJudgeInfo(judgeInfo);
 
+        System.out.println("结果是:");
+        System.out.println(response);
+
         return response;
+    }
+
+    public static void main(String[] args){
+        ExecuteCodeRequest executeCodeRequest = new ExecuteCodeRequest();
+        executeCodeRequest.setCode("a");
+        executeCodeRequest.setLanguage("java");
+        executeCodeRequest.setInputList(Arrays.asList("1 2","8 9","-15 -100","569 -569"));
+
+        AICodeSandbox aiCodeSandbox = new AICodeSandbox();
+        ExecuteCodeResponse response = aiCodeSandbox.executeCode(executeCodeRequest);
+        System.out.println(response);
     }
 }

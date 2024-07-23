@@ -15,22 +15,22 @@ import java.util.List;
 public class JudgeContext {
 
     /**
-     * 代码沙箱 返回结果
+     * 代码沙箱 (返回结果)
      */
     private JudgeInfo judgeInfo;
 
     /**
-     * 判断输入参数
+     * 判断输入参数 (题目中)
      */
     private List<String> inputList;
 
     /**
-     * 判断输出参数
+     * 判断输出参数 (返回结果)
      */
     private List<String> outputList;
 
     /**
-     * 获取输入用例
+     * 题目用例 (题目中)
      */
     private List<JudgeCase> judgeCaseList;
 
@@ -43,5 +43,4 @@ public class JudgeContext {
      * 问题提交
      */
     private QuestionSubmit questionSubmit;
-
 }

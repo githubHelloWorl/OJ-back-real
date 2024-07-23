@@ -72,7 +72,7 @@ wx:
       http-client-type: HttpClient
       key-prefix: wx
       redis:
-        host: 127.0.0.1
+        host: 121.41.56.218
         port: 6379
       type: Memory
   # 微信开放平台
@@ -107,3 +107,4 @@ yuapi:
     secret-key: mqw1tc1xgn7d09we9u8hmzucbmy43on3
 myAI:
   id: 1L
+
