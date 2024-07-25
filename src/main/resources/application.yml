@@ -103,8 +103,14 @@ knife4j:
 
 yuapi:
   client:
+    id: 1815961671427883010
     access-key: isg78n484r2hf2mo43ofwmqu6p2n6kdz
     secret-key: mqw1tc1xgn7d09we9u8hmzucbmy43on3
-myAI:
-  id: 1L
+
+# 讯飞星火配置
+xunfei:
+  client:
+    appid: dfcb4ff4
+    apiSecret: MTlhYWQzZDhhZTk5YTE4ZGE4M2Q1Yzg1
+    apiKey: ef7a82507829e3cd6211b7b3515a7236
 

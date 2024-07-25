@@ -5,6 +5,7 @@ import com.yupi.yuoj.judge.codesandbox.model.ExecuteCodeRequest;
 import com.yupi.yuoj.judge.codesandbox.model.ExecuteCodeResponse;
 import com.yupi.yuoj.judge.codesandbox.model.JudgeInfo;
 import com.yupi.yuoj.manager.AIManager;
+import com.yupi.yuoj.manager.SparkManager;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
@@ -14,6 +15,8 @@ import java.util.List;
  * 调用大模型接口
  */
 public class AICodeSandbox implements CodeSandbox {
+    @Resource
+    private SparkManager sparkManager;
 
     @Resource
     private AIManager aiManager;
@@ -39,12 +42,15 @@ public class AICodeSandbox implements CodeSandbox {
         }
 
         // 调用AI
-        String ansResponse =  aiManager.doChat(requestMessage);
+        String ansResponse = aiManager.doChat(requestMessage);
+//        String ansResponse =  sparkManager.sendMesToAIUseXingHuo(requestMessage);
+        System.out.println("调用AI结果:");
+        System.out.println(ansResponse);
 
         // 处理返回结果
         ExecuteCodeResponse response = new ExecuteCodeResponse();
         String[] splits = ansResponse.split("【【【");
-        if(splits.length < 2){
+        if(splits.length < 1){
 //            throw new BusinessException(ErrorCode.SYSTEM_ERROR,"AI 生成错误");
             response.setStatus(0);
             response.setMessage("AI 生成错误");
@@ -63,7 +69,7 @@ public class AICodeSandbox implements CodeSandbox {
         judgeInfo.setMemory(0L);
         response.setJudgeInfo(judgeInfo);
 
-        System.out.println("结果是:");
+        System.out.println("最后结果是:");
         System.out.println(response);
 
         return response;

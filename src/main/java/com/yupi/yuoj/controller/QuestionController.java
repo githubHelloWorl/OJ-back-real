@@ -10,7 +10,6 @@ import com.yupi.yuoj.common.ResultUtils;
 import com.yupi.yuoj.constant.UserConstant;
 import com.yupi.yuoj.exception.BusinessException;
 import com.yupi.yuoj.exception.ThrowUtils;
-import com.yupi.yuoj.manager.AIManager;
 import com.yupi.yuoj.model.dto.question.*;
 import com.yupi.yuoj.model.dto.questionsubmit.QuestionSubmitAddRequest;
 import com.yupi.yuoj.model.dto.questionsubmit.QuestionSubmitQueryRequest;
@@ -47,9 +46,6 @@ public class QuestionController {
 
     @Resource
     private QuestionSubmitService questionSubmitService;
-    
-    @Resource
-    private AIManager aiManager;
 
     private final static Gson GSON = new Gson();
 
@@ -325,15 +321,5 @@ public class QuestionController {
         final User loginUser = userService.getLoginUser(request);
         // 返回脱敏信息
         return ResultUtils.success(questionSubmitService.getQuestionSubmitVOPage(questionSubmitPage, loginUser));
-    }
-    
-    public void test1(){
-        String ansResponse =  aiManager.doChat("aaa");
-        System.out.println(ansResponse);
-    }
-
-    public static void main(String[] args){
-        QuestionController questionController = new QuestionController();
-        questionController.test1();
     }
 }

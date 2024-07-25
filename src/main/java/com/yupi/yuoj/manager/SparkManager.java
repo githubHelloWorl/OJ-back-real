@@ -1,25 +1,23 @@
 package com.yupi.yuoj.manager;
 
-import com.yupi.yucongming.dev.client.YuCongMingClient;
-import com.yupi.yucongming.dev.common.BaseResponse;
-import com.yupi.yucongming.dev.model.DevChatRequest;
-import com.yupi.yucongming.dev.model.DevChatResponse;
-import com.yupi.yuoj.common.ErrorCode;
-import com.yupi.yuoj.exception.BusinessException;
+import io.github.briqt.spark4j.SparkClient;
+import io.github.briqt.spark4j.constant.SparkApiVersion;
+import io.github.briqt.spark4j.model.SparkMessage;
+import io.github.briqt.spark4j.model.SparkSyncChatResponse;
+import io.github.briqt.spark4j.model.request.SparkRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
-@Service
+@Component
 @Slf4j
-public class AIManager {
-    @Resource
-    private YuCongMingClient yuCongMingClient;
+public class SparkManager {
 
-    @Value("${yuapi.client.id}")
-    private Long id;
+    @Resource
+    private SparkClient sparkClient;
 
     /**
      * AI生成问题的预设条件
@@ -58,25 +56,32 @@ public class AIManager {
             "0\n" +
             "【【【\n\n";
 
-
     /**
-     * AI 对话
+     * 向星火AI发送请求
      *
-     * @param message
+     * @param content
      * @return
      */
-    public String doChat(String message) {
-        // 第三步，构造请求参数
-        DevChatRequest devChatRequest = new DevChatRequest();
-        // 模型id，尾后加L，转成long类型
-        devChatRequest.setModelId(id);
-        devChatRequest.setMessage(message);
-        // 第四步，获取响应结果
-        BaseResponse<DevChatResponse> response = yuCongMingClient.doChat(devChatRequest);
-        // 如果响应为null，就抛出系统异常，提示“AI 响应错误”
-        if (response == null) {
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "AI 响应错误");
-        }
-        return response.getData().getContent();
+    public String sendMesToAIUseXingHuo(final String content) {
+        // 消息列表，可以在此列表添加历史对话记录
+        List<SparkMessage> messages = new ArrayList<>();
+//        messages.add(SparkMessage.systemContent(PRECONDITION));
+        messages.add(SparkMessage.userContent(PRECONDITION + content));
+        // 构造请求
+        SparkRequest sparkRequest = SparkRequest.builder()
+                // 消息列表
+                .messages(messages)
+                // 模型回答的tokens的最大长度，非必传，默认为2048
+                .maxTokens(2048)
+                // 结果随机性，取值越高随机性越强，即相同的问题得到的不同答案的可能性越高，非必传，取值为[0,1]，默认为0.5
+                .temperature(0.2)
+                // 指定请求版本
+                .apiVersion(SparkApiVersion.V3_5)
+                .build();
+        // 同步调用
+        SparkSyncChatResponse chatResponse = sparkClient.chatSync(sparkRequest);
+        String responseContent = chatResponse.getContent();
+        log.info("星火AI返回的结果{}", responseContent);
+        return responseContent;
     }
 }

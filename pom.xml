@@ -130,6 +130,14 @@
             <artifactId>yucongming-java-sdk</artifactId>
             <version>0.0.4</version>
         </dependency>
+
+        <!-- 星火 -->
+        <dependency>
+            <groupId>io.github.briqt</groupId>
+            <artifactId>xunfei-spark4j</artifactId>
+            <version>1.3.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
