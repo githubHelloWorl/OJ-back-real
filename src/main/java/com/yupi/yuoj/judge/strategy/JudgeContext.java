@@ -15,7 +15,7 @@ import java.util.List;
 public class JudgeContext {
 
     /**
-     * 代码沙箱 (返回结果)
+     * 代码沙箱 (包括 程序执行信息/消耗内存/消耗时间 )
      */
     private JudgeInfo judgeInfo;
 

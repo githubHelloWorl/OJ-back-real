@@ -28,5 +28,4 @@ public class JudgeManager {
         }
         return judgeStrategy.doJudge(judgeContext);
     }
-
 }

@@ -32,12 +32,14 @@ public class DefaultJudgeStrategy implements JudgeStrategy {
         JudgeInfo judgeInfoResponse = new JudgeInfo();
         judgeInfoResponse.setMemory(memory);
         judgeInfoResponse.setTime(time);
+
         // 先判断沙箱执行的结果输出数量是否和预期输出数量相等
         if (outputList.size() != inputList.size()) {
             judgeInfoMessageEnum = JudgeInfoMessageEnum.WRONG_ANSWER;
             judgeInfoResponse.setMessage(judgeInfoMessageEnum.getValue());
             return judgeInfoResponse;
         }
+
         // 依次判断每一项输出和预期输出是否相等
         for (int i = 0; i < judgeCaseList.size(); i++) {
             JudgeCase judgeCase = judgeCaseList.get(i);
@@ -47,6 +49,7 @@ public class DefaultJudgeStrategy implements JudgeStrategy {
                 return judgeInfoResponse;
             }
         }
+
         // 判断题目限制
         String judgeConfigStr = question.getJudgeConfig();
         JudgeConfig judgeConfig = JSONUtil.toBean(judgeConfigStr, JudgeConfig.class);
